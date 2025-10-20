@@ -16,7 +16,9 @@ import { WeatherWindow } from "./windows/WeatherWindow";
 import { TaskManagerWindow } from "./windows/TaskManagerWindow";
 import { FileExplorerWindow } from "./windows/FileExplorerWindow";
 import { SnakeGameWindow } from "./windows/SnakeGameWindow";
-import { User, FolderCode, Award, Settings, Briefcase, FileText, Mail, Terminal, Activity, Clock, Cloud, Cpu, FolderTree, Gamepad2 } from "lucide-react";
+import { CalculatorWindow } from "./windows/CalculatorWindow";
+import { TicTacToeWindow } from "./windows/TicTacToeWindow";
+import { User, FolderCode, Award, Settings, Briefcase, FileText, Mail, Terminal, Activity, Clock, Cloud, Cpu, FolderTree, Gamepad2, Calculator, Grid3x3 } from "lucide-react";
 
 interface OpenWindow {
   id: string;
@@ -46,6 +48,8 @@ export const Desktop = () => {
     { id: "fileexplorer", title: "File Explorer", icon: FolderTree, component: <FileExplorerWindow /> },
     { id: "terminal", title: "Terminal", icon: Terminal, component: <TerminalWindow /> },
     { id: "snake", title: "Snake.game", icon: Gamepad2, component: <SnakeGameWindow /> },
+    { id: "tictactoe", title: "TicTacToe.exe", icon: Grid3x3, component: <TicTacToeWindow /> },
+    { id: "calculator", title: "Calculator", icon: Calculator, component: <CalculatorWindow /> },
     { id: "sysmonitor", title: "System Monitor", icon: Activity, component: <SystemMonitorWindow /> },
   ];
 

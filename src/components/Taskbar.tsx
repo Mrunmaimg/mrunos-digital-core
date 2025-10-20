@@ -68,7 +68,7 @@ export const Taskbar = ({ openWindows, onWindowClick }: TaskbarProps) => {
             variant="ghost"
             size="sm"
             className="h-8 w-8 p-0 hover:bg-primary/20 hover:text-primary transition-all"
-            onClick={() => window.open("#", "_blank")}
+            onClick={() => window.open("https://drive.google.com/file/d/1okz1Q_5hcRB2H69GJNP3EfwdlmRalZ7t/view?usp=drive_link", "_blank")}
             title="Resume"
           >
             <FileText className="w-4 h-4" />

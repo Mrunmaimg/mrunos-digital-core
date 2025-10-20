@@ -1,4 +1,4 @@
-import { Mail, Phone, Github, Linkedin, Code, ExternalLink } from "lucide-react";
+import { Mail, Phone, Github, Linkedin, Code, ExternalLink, FileText } from "lucide-react";
 import { Button } from "../ui/button";
 
 const contacts = [
@@ -70,22 +70,28 @@ export const ContactWindow = () => {
         ))}
       </div>
 
-      <div className="glass p-6 rounded-lg bg-gradient-to-br from-primary/10 to-secondary/10">
-        <h3 className="text-lg font-semibold text-primary mb-3">Quick Links</h3>
+      <div className="glass p-6 rounded-lg bg-gradient-to-br from-primary/10 via-secondary/5 to-accent/10 border border-primary/20">
+        <h3 className="text-lg font-semibold text-primary mb-4">Quick Links</h3>
         <div className="flex flex-wrap gap-2">
-          <Button variant="outline" size="sm" asChild>
+          <Button variant="outline" size="sm" className="hover:bg-primary/20 hover:border-primary" asChild>
             <a href="https://github.com/Mrunmaimg" target="_blank" rel="noopener noreferrer">
               <Github className="w-4 h-4 mr-1" />
               GitHub Profile
             </a>
           </Button>
-          <Button variant="outline" size="sm" asChild>
+          <Button variant="outline" size="sm" className="hover:bg-primary/20 hover:border-primary" asChild>
             <a href="https://www.linkedin.com/in/mrunmai-girame/" target="_blank" rel="noopener noreferrer">
               <Linkedin className="w-4 h-4 mr-1" />
               LinkedIn Profile
             </a>
           </Button>
-          <Button variant="outline" size="sm" asChild>
+          <Button variant="outline" size="sm" className="hover:bg-primary/20 hover:border-primary" asChild>
+            <a href="https://drive.google.com/file/d/1okz1Q_5hcRB2H69GJNP3EfwdlmRalZ7t/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
+              <FileText className="w-4 h-4 mr-1" />
+              View Resume
+            </a>
+          </Button>
+          <Button variant="outline" size="sm" className="hover:bg-primary/20 hover:border-primary" asChild>
             <a href="mailto:mrunmaimg@gmail.com">
               <Mail className="w-4 h-4 mr-1" />
               Send Email
