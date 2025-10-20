@@ -1,3 +1,33 @@
+import { Code2, Database, Terminal, Wrench, BookOpen, FileCode, Server, Box, GitBranch, Braces } from "lucide-react";
+
+const skillIcons: Record<string, any> = {
+  "Java": Code2,
+  "Python": FileCode,
+  "C/C++": Terminal,
+  "SQL": Database,
+  "JavaScript": Braces,
+  "HTML/CSS": Code2,
+  "R": FileCode,
+  "Springboot": Server,
+  "Hibernate": Database,
+  "Flask": Server,
+  "TensorFlow-Keras": Box,
+  "Scikit-learn": Box,
+  "Hugging Face": Box,
+  "NLTK": BookOpen,
+  "Numpy": Box,
+  "Pandas": Database,
+  "Git": GitBranch,
+  "Linux/Unix": Terminal,
+  "VS Code": Code2,
+  "IntelliJ": Code2,
+  "Postman": Server,
+  "Data Structures & Algorithms": BookOpen,
+  "Distributed Systems": Server,
+  "Computer Networks (TCP/IP)": Server,
+  "Operating Systems": Terminal,
+};
+
 const skillCategories = [
   {
     category: "Languages",
@@ -37,14 +67,22 @@ export const SkillsWindow = () => {
               {category.category}
             </h3>
             <div className="flex flex-wrap gap-2">
-              {category.skills.map((skill, i) => (
-                <span
-                  key={i}
-                  className={`px-2 md:px-3 py-1 md:py-1.5 text-xs md:text-sm bg-${category.color}/10 text-${category.color} rounded-lg border border-${category.color}/30 hover:scale-105 transition-transform cursor-default`}
-                >
-                  {skill}
-                </span>
-              ))}
+              {category.skills.map((skill, i) => {
+                const SkillIcon = skillIcons[skill] || Code2;
+                const colorClass = category.color === "primary" ? "bg-primary/10 text-primary border-primary/30 hover:bg-primary/20" :
+                                  category.color === "secondary" ? "bg-secondary/10 text-secondary border-secondary/30 hover:bg-secondary/20" :
+                                  "bg-accent/10 text-accent border-accent/30 hover:bg-accent/20";
+                
+                return (
+                  <span
+                    key={i}
+                    className={`group px-2 md:px-3 py-1 md:py-1.5 text-xs md:text-sm ${colorClass} rounded-lg border hover:scale-105 transition-all cursor-default flex items-center gap-2`}
+                  >
+                    <SkillIcon className="w-0 h-4 opacity-0 group-hover:w-4 group-hover:opacity-100 transition-all duration-300" />
+                    <span>{skill}</span>
+                  </span>
+                );
+              })}
             </div>
           </div>
         ))}

@@ -11,7 +11,12 @@ import { CertificationsWindow } from "./windows/CertificationsWindow";
 import { ContactWindow } from "./windows/ContactWindow";
 import { TerminalWindow } from "./windows/TerminalWindow";
 import { SystemMonitorWindow } from "./windows/SystemMonitorWindow";
-import { User, FolderCode, Award, Settings, Briefcase, FileText, Mail, Terminal, Activity } from "lucide-react";
+import { ClockCalendarWindow } from "./windows/ClockCalendarWindow";
+import { WeatherWindow } from "./windows/WeatherWindow";
+import { TaskManagerWindow } from "./windows/TaskManagerWindow";
+import { FileExplorerWindow } from "./windows/FileExplorerWindow";
+import { SnakeGameWindow } from "./windows/SnakeGameWindow";
+import { User, FolderCode, Award, Settings, Briefcase, FileText, Mail, Terminal, Activity, Clock, Cloud, Cpu, FolderTree, Gamepad2 } from "lucide-react";
 
 interface OpenWindow {
   id: string;
@@ -35,7 +40,12 @@ export const Desktop = () => {
     { id: "achievements", title: "Achievements.log", icon: Award, component: <AchievementsWindow /> },
     { id: "certifications", title: "Certifications.key", icon: FileText, component: <CertificationsWindow /> },
     { id: "contact", title: "Contact.txt", icon: Mail, component: <ContactWindow /> },
+    { id: "clock", title: "Clock.widget", icon: Clock, component: <ClockCalendarWindow /> },
+    { id: "weather", title: "Weather.app", icon: Cloud, component: <WeatherWindow /> },
+    { id: "taskmanager", title: "Task Manager", icon: Cpu, component: <TaskManagerWindow /> },
+    { id: "fileexplorer", title: "File Explorer", icon: FolderTree, component: <FileExplorerWindow /> },
     { id: "terminal", title: "Terminal", icon: Terminal, component: <TerminalWindow /> },
+    { id: "snake", title: "Snake.game", icon: Gamepad2, component: <SnakeGameWindow /> },
     { id: "sysmonitor", title: "System Monitor", icon: Activity, component: <SystemMonitorWindow /> },
   ];
 

@@ -12,7 +12,10 @@ const commands: Record<string, string> = {
   clear       - Clear terminal screen
   ls          - List available apps
   date        - Show current date and time
-  uname       - System information`,
+  uname       - System information
+  bootlog     - Show system boot logs
+  snake       - Play Snake game
+  easter      - Display Easter egg`,
   whoami: "Mrunmai Manoj Girame - Software Developer | AI Enthusiast | Robotics Mentor",
   about: `Name: Mrunmai Manoj Girame
 Education: B.Tech in Information Technology (CGPA: 8.73)
@@ -42,6 +45,36 @@ About.exe  Projects.app  Skills.sys  Experience.cmd
 Achievements.log  Certifications.key  Contact.txt  Terminal  SystemMonitor`,
   date: new Date().toLocaleString(),
   uname: "MrunOS v1.0 - Based on ReactOS | Architecture: x64 | Kernel: Modern",
+  bootlog: `[BOOT] MrunOS v1.0 initializing...
+[  OK  ] Started System Logging Service
+[  OK  ] Loaded Java Spring Boot Engine
+[  OK  ] Loaded AI/ML TensorFlow Module
+[  OK  ] Mounted LeetCode Problem Solver (500+ problems cached)
+[  OK  ] Loaded Achievement System: ACM TCET Winner Badge
+[  OK  ] Loaded Achievement System: Citi Ada Lovelace Finalist
+[  OK  ] Started SkillCiti Platform Services
+[  OK  ] Mounted GitHub Repository Sync Daemon
+[  OK  ] All systems operational | Uptime: 100%`,
+  snake: "Snake game launching... Type 'help' to see all commands. Use Apps menu to play Snake!",
+  easter: `
+    ⠀⠀⠀⠀⠀⠀⠀⣀⣀⣤⣤⣤⣤⣤⣤⣤⣤⣀⣀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⣠⣴⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣦⣄⠀⠀⠀
+    ⠀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣄⠀
+    ⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠿⠿⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷
+    ⣿⣿⣿⣿⣿⣿⣿⠟⠉⠀⠀⠀⠀⠀⠀⠉⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿
+    ⣿⣿⣿⣿⣿⣿⠃⠀⠀⢀⣀⣀⣀⣀⡀⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿
+    ⣿⣿⣿⣿⣿⡏⠀⠀⣾⣿⣿⣿⣿⣿⣿⣷⠀⠀⢹⣿⣿⣿⣿⣿⣿⣿
+    ⣿⣿⣿⣿⣿⡇⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿
+    ⣿⣿⣿⣿⣿⡇⠀⠀⢿⣿⣿⣿⣿⣿⣿⡿⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿
+    ⣿⣿⣿⣿⣿⣿⡀⠀⠀⠉⠛⠿⠿⠛⠉⠀⠀⢀⣿⣿⣿⣿⣿⣿⣿⣿
+    ⠹⣿⣿⣿⣿⣿⣿⣦⣀⠀⠀⠀⠀⠀⣀⣴⣿⣿⣿⣿⣿⣿⣿⣿⠏
+    ⠀⠙⢿⣿⣿⣿⣿⣿⣿⣿⣶⣶⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⠀
+    ⠀⠀⠀⠙⠻⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠋⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠈⠉⠛⠛⠿⠿⠿⠿⠛⠛⠉⠁⠀⠀⠀⠀⠀⠀⠀
+    
+    "The only way to do great work is to love what you do." 
+    - Built with 💙 by Mrunmai Girame
+  `,
 };
 
 export const TerminalWindow = () => {

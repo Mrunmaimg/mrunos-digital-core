@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
-import { Wifi, Volume2, Battery } from "lucide-react";
+import { Wifi, Volume2, Battery, Github, Linkedin, FileText } from "lucide-react";
 
 interface TaskbarProps {
   openWindows: Array<{ id: string; title: string; icon: any }>;
@@ -43,12 +43,48 @@ export const Taskbar = ({ openWindows, onWindowClick }: TaskbarProps) => {
       </div>
 
       {/* System Tray */}
-      <div className="flex items-center gap-2 md:gap-3">
-        <Wifi className="w-3 h-3 md:w-4 md:h-4 text-primary hidden sm:inline" />
-        <Volume2 className="w-3 h-3 md:w-4 md:h-4 text-primary hidden sm:inline" />
-        <Battery className="w-3 h-3 md:w-4 md:h-4 text-primary hidden md:inline" />
-        <div className="text-xs md:text-sm text-foreground/80 font-mono">
-          {time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+      <div className="flex items-center gap-2 md:gap-4">
+        {/* System Shortcuts */}
+        <div className="flex items-center gap-1 md:gap-2">
+          <Button
+            variant="ghost"
+            size="sm"
+            className="h-8 w-8 p-0 hover:bg-primary/20 hover:text-primary transition-all"
+            onClick={() => window.open("https://github.com/Mrunmaimg", "_blank")}
+            title="GitHub"
+          >
+            <Github className="w-4 h-4" />
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            className="h-8 w-8 p-0 hover:bg-primary/20 hover:text-primary transition-all"
+            onClick={() => window.open("https://linkedin.com/in/mrunmai-girame", "_blank")}
+            title="LinkedIn"
+          >
+            <Linkedin className="w-4 h-4" />
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            className="h-8 w-8 p-0 hover:bg-primary/20 hover:text-primary transition-all"
+            onClick={() => window.open("#", "_blank")}
+            title="Resume"
+          >
+            <FileText className="w-4 h-4" />
+          </Button>
+        </div>
+        
+        <div className="h-6 w-px bg-primary/20 hidden md:block" />
+        
+        {/* System Info */}
+        <div className="flex items-center gap-2 md:gap-3">
+          <Wifi className="w-3 h-3 md:w-4 md:h-4 text-primary hidden sm:inline" />
+          <Volume2 className="w-3 h-3 md:w-4 md:h-4 text-primary hidden sm:inline" />
+          <Battery className="w-3 h-3 md:w-4 md:h-4 text-primary hidden md:inline" />
+          <div className="text-xs md:text-sm text-foreground/80 font-mono">
+            {time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+          </div>
         </div>
       </div>
     </div>
