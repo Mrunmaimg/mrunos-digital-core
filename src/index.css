@@ -1,0 +1,229 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Ubuntu Dark Theme */
+    --background: 240 10% 3.9%;
+    --foreground: 180 100% 90%;
+
+    --card: 240 10% 7%;
+    --card-foreground: 180 100% 90%;
+
+    --popover: 240 10% 7%;
+    --popover-foreground: 180 100% 90%;
+
+    /* Ubuntu Orange Primary */
+    --primary: 26 90% 55%;
+    --primary-foreground: 240 10% 3.9%;
+
+    /* Electric Purple Secondary */
+    --secondary: 270 70% 70%;
+    --secondary-foreground: 240 10% 3.9%;
+
+    /* Muted Glass Effect */
+    --muted: 240 10% 15%;
+    --muted-foreground: 180 50% 60%;
+
+    /* Vibrant Magenta Accent */
+    --accent: 300 100% 70%;
+    --accent-foreground: 240 10% 3.9%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 240 10% 20%;
+    --input: 240 10% 15%;
+    --ring: 26 90% 55%;
+
+    --radius: 0.75rem;
+    
+    /* Custom MrunOS Variables */
+    --terminal-green: 120 100% 50%;
+    --neon-glow: 26 90% 55%;
+    --glass-bg: 240 10% 10%;
+    --glass-border: 240 10% 25%;
+    
+    /* Gradients */
+    --gradient-cyber: linear-gradient(135deg, hsl(26 90% 55% / 0.2), hsl(270 70% 70% / 0.2));
+    --gradient-neon: linear-gradient(90deg, hsl(26 90% 55%), hsl(270 70% 70%), hsl(300 100% 70%));
+    
+    /* Shadows & Glows */
+    --glow-cyan: 0 0 20px hsl(26 90% 55% / 0.5), 0 0 40px hsl(26 90% 55% / 0.3);
+    --glow-purple: 0 0 20px hsl(270 70% 70% / 0.5), 0 0 40px hsl(270 70% 70% / 0.3);
+    --glow-magenta: 0 0 20px hsl(300 100% 70% / 0.5), 0 0 40px hsl(300 100% 70% / 0.3);
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-mono;
+    overflow: hidden;
+  }
+  
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-muted/30;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary/50 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary/70;
+  }
+}
+
+@layer components {
+  /* Glass Morphism Effect */
+  .glass {
+    background: hsl(var(--glass-bg) / 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid hsl(var(--glass-border) / 0.3);
+  }
+  
+  /* Neon Glow Effects */
+  .glow-cyan {
+    box-shadow: var(--glow-cyan);
+  }
+  
+  .glow-purple {
+    box-shadow: var(--glow-purple);
+  }
+  
+  .glow-magenta {
+    box-shadow: var(--glow-magenta);
+  }
+  
+  /* Terminal Text Effect */
+  .terminal-text {
+    color: hsl(var(--terminal-green));
+    text-shadow: 0 0 10px hsl(var(--terminal-green) / 0.5);
+  }
+  
+  /* Cyber Grid Background */
+  .cyber-grid {
+    background-image: 
+      linear-gradient(hsl(var(--primary) / 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--primary) / 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+  
+  /* Animated Gradient Border */
+  .gradient-border {
+    position: relative;
+    background: var(--gradient-cyber);
+    border-radius: var(--radius);
+  }
+  
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius);
+    padding: 2px;
+    background: var(--gradient-neon);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+  
+  /* Hover Scale Animation */
+  .hover-scale {
+    transition: var(--transition-smooth);
+  }
+  
+  .hover-scale:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Typing Animation */
+  @keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+  
+  @keyframes blink {
+    50% { border-color: transparent; }
+  }
+  
+  .typing-animation {
+    overflow: hidden;
+    border-right: 2px solid hsl(var(--primary));
+    white-space: nowrap;
+    animation: typing 2s steps(40, end), blink 0.75s step-end infinite;
+  }
+  
+  /* Pulse Glow Animation */
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+    }
+    50% {
+      box-shadow: 0 0 40px hsl(var(--primary) / 0.6);
+    }
+  }
+  
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+  
+  /* Scan Line Effect */
+  @keyframes scan {
+    0% { top: 0; }
+    100% { top: 100%; }
+  }
+  
+  .scan-line {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .scan-line::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: hsl(var(--primary) / 0.5);
+    animation: scan 4s linear infinite;
+  }
+}
