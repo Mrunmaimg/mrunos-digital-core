@@ -31,16 +31,6 @@ export const BrowserWindow = () => {
     setIsLoading(true);
     setCurrentUrl(formattedUrl);
     setUrl(targetUrl);
-    
-    // Most sites block iframe embedding, so open in new tab
-    window.open(formattedUrl, '_blank', 'noopener,noreferrer');
-    
-    toast({
-      title: "Opening in new tab",
-      description: "Most sites don't allow embedding for security reasons",
-    });
-    
-    setIsLoading(false);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -86,32 +76,42 @@ export const BrowserWindow = () => {
         </form>
       </div>
 
-      <div className="flex-1 flex flex-col items-center justify-center p-8 gap-6">
-        <Globe className="w-16 h-16 text-primary/40" />
-        <div className="text-center space-y-2">
-          <h3 className="font-bold terminal-text">MrunBrowser</h3>
-          <p className="text-sm text-muted-foreground">Your gateway to the web</p>
-          <p className="text-xs text-muted-foreground/60">
-            Links open in new tabs for security
-          </p>
-        </div>
-        <div className="w-full max-w-sm space-y-2">
-          <p className="text-xs text-muted-foreground terminal-text">Quick Links:</p>
-          <div className="grid grid-cols-2 gap-2">
-            {bookmarks.map((bookmark, idx) => (
-              <Button 
-                key={idx} 
-                variant="outline" 
-                size="sm" 
-                className="justify-start text-xs gap-2"
-                onClick={() => navigateTo(bookmark.url)}
-              >
-                <ExternalLink className="w-3 h-3" />
-                {bookmark.name}
-              </Button>
-            ))}
+      <div className="flex-1 flex flex-col">
+        {currentUrl ? (
+          <iframe
+            ref={iframeRef}
+            src={currentUrl}
+            className="w-full h-full border-0"
+            title="Browser Content"
+            sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+            onLoad={() => setIsLoading(false)}
+          />
+        ) : (
+          <div className="flex-1 flex flex-col items-center justify-center p-8 gap-6">
+            <Globe className="w-16 h-16 text-primary/40" />
+            <div className="text-center space-y-2">
+              <h3 className="font-bold terminal-text">MrunBrowser</h3>
+              <p className="text-sm text-muted-foreground">Your gateway to the web</p>
+            </div>
+            <div className="w-full max-w-sm space-y-2">
+              <p className="text-xs text-muted-foreground terminal-text">Quick Links:</p>
+              <div className="grid grid-cols-2 gap-2">
+                {bookmarks.map((bookmark, idx) => (
+                  <Button 
+                    key={idx} 
+                    variant="outline" 
+                    size="sm" 
+                    className="justify-start text-xs gap-2"
+                    onClick={() => navigateTo(bookmark.url)}
+                  >
+                    <ExternalLink className="w-3 h-3" />
+                    {bookmark.name}
+                  </Button>
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

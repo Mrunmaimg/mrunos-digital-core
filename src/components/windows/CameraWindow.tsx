@@ -55,6 +55,12 @@ export const CameraWindow = () => {
         ctx.drawImage(video, 0, 0);
         const imageData = canvas.toDataURL('image/png');
         setCapturedImage(imageData);
+        
+        // Save to localStorage
+        const photos = JSON.parse(localStorage.getItem('mrunos-photos') || '[]');
+        photos.unshift({ id: Date.now(), data: imageData, timestamp: Date.now() });
+        localStorage.setItem('mrunos-photos', JSON.stringify(photos));
+        
         stopCamera();
         toast({
           title: "Photo Captured!",
