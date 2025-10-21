@@ -21,7 +21,7 @@ import { TicTacToeWindow } from "./windows/TicTacToeWindow";
 import { CameraWindow } from "./windows/CameraWindow";
 import { MusicWindow } from "./windows/MusicWindow";
 import { NotesWindow } from "./windows/NotesWindow";
-import { BrowserWindow } from "./windows/BrowserWindow";
+
 import { PhotosWindow } from "./windows/PhotosWindow";
 import { User, FolderCode, Award, Settings, Briefcase, FileText, Mail, Terminal, Activity, Clock, Cloud, Cpu, FolderTree, Gamepad2, Calculator, Grid3x3, Camera, Music, StickyNote, Globe, Image } from "lucide-react";
 
@@ -59,7 +59,6 @@ export const Desktop = () => {
     { id: "camera", title: "Camera.app", icon: Camera, component: <CameraWindow /> },
     { id: "music", title: "Music.player", icon: Music, component: <MusicWindow /> },
     { id: "notes", title: "Notes.txt", icon: StickyNote, component: <NotesWindow /> },
-    { id: "browser", title: "Browser.exe", icon: Globe, component: <BrowserWindow /> },
     { id: "photos", title: "Photos.app", icon: Image, component: <PhotosWindow /> },
   ];
 
