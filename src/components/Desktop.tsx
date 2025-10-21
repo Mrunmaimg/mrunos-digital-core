@@ -18,7 +18,12 @@ import { FileExplorerWindow } from "./windows/FileExplorerWindow";
 import { SnakeGameWindow } from "./windows/SnakeGameWindow";
 import { CalculatorWindow } from "./windows/CalculatorWindow";
 import { TicTacToeWindow } from "./windows/TicTacToeWindow";
-import { User, FolderCode, Award, Settings, Briefcase, FileText, Mail, Terminal, Activity, Clock, Cloud, Cpu, FolderTree, Gamepad2, Calculator, Grid3x3 } from "lucide-react";
+import { CameraWindow } from "./windows/CameraWindow";
+import { MusicWindow } from "./windows/MusicWindow";
+import { NotesWindow } from "./windows/NotesWindow";
+import { BrowserWindow } from "./windows/BrowserWindow";
+import { PhotosWindow } from "./windows/PhotosWindow";
+import { User, FolderCode, Award, Settings, Briefcase, FileText, Mail, Terminal, Activity, Clock, Cloud, Cpu, FolderTree, Gamepad2, Calculator, Grid3x3, Camera, Music, StickyNote, Globe, Image } from "lucide-react";
 
 interface OpenWindow {
   id: string;
@@ -51,6 +56,11 @@ export const Desktop = () => {
     { id: "tictactoe", title: "TicTacToe.exe", icon: Grid3x3, component: <TicTacToeWindow /> },
     { id: "calculator", title: "Calculator", icon: Calculator, component: <CalculatorWindow /> },
     { id: "sysmonitor", title: "System Monitor", icon: Activity, component: <SystemMonitorWindow /> },
+    { id: "camera", title: "Camera.app", icon: Camera, component: <CameraWindow /> },
+    { id: "music", title: "Music.player", icon: Music, component: <MusicWindow /> },
+    { id: "notes", title: "Notes.txt", icon: StickyNote, component: <NotesWindow /> },
+    { id: "browser", title: "Browser.exe", icon: Globe, component: <BrowserWindow /> },
+    { id: "photos", title: "Photos.app", icon: Image, component: <PhotosWindow /> },
   ];
 
   const openApp = (app: typeof apps[0]) => {

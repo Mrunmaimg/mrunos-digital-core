@@ -13,7 +13,7 @@ const Index = () => {
         <Desktop />
       )}
       
-      <footer className="fixed bottom-14 left-0 right-0 z-[40] text-center py-1 text-xs text-muted-foreground/60 pointer-events-none">
+      <footer className="fixed bottom-0 left-0 right-0 z-[40] text-center py-1 text-[8px] text-muted-foreground/50 pointer-events-none">
         <p className="terminal-text">
           © 2025 Mrunmai Girame — Running MrunOS v1.0 | Boot Successful ✅
         </p>
