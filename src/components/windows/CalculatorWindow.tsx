@@ -67,61 +67,81 @@ export const CalculatorWindow = () => {
     }
   };
 
-  const buttons = [
-    ["7", "8", "9", "÷"],
-    ["4", "5", "6", "×"],
-    ["1", "2", "3", "-"],
-    ["0", ".", "=", "+"],
-  ];
-
   return (
-    <div className="p-4 space-y-4">
-      <div className="glass p-6 rounded-lg border border-primary/30">
-        <div className="text-right text-3xl font-mono text-primary mb-2 h-12 overflow-hidden">
-          {display}
-        </div>
-        {operation && (
-          <div className="text-right text-sm text-muted-foreground">
-            {previousValue} {operation}
+    <div className="h-full flex items-center justify-center p-4">
+      <div className="w-full max-w-xs space-y-3">
+        {/* Display */}
+        <div className="glass p-4 rounded-2xl border border-primary/30 shadow-lg">
+          <div className="text-right text-4xl font-mono text-primary mb-1 h-14 overflow-hidden flex items-center justify-end">
+            {display}
           </div>
-        )}
-      </div>
+          {operation && (
+            <div className="text-right text-xs text-muted-foreground opacity-70">
+              {previousValue} {operation}
+            </div>
+          )}
+        </div>
 
-      <div className="flex gap-2 mb-4">
+        {/* Clear Button */}
         <Button
           variant="outline"
-          className="flex-1 text-destructive hover:bg-destructive/20"
+          className="w-full text-destructive hover:bg-destructive/20 border-destructive/30"
           onClick={handleClear}
         >
-          <Delete className="w-4 h-4 mr-1" />
+          <Delete className="w-4 h-4 mr-2" />
           Clear
         </Button>
-      </div>
 
-      <div className="grid grid-cols-4 gap-2">
-        {buttons.flat().map((btn) => (
+        {/* Number Pad */}
+        <div className="grid grid-cols-3 gap-2">
+          {["7", "8", "9", "4", "5", "6", "1", "2", "3"].map((num) => (
+            <Button
+              key={num}
+              variant="outline"
+              className="h-16 text-xl font-semibold glass hover:bg-primary/10 border-primary/20"
+              onClick={() => handleNumber(num)}
+            >
+              {num}
+            </Button>
+          ))}
           <Button
-            key={btn}
-            variant={["÷", "×", "-", "+", "="].includes(btn) ? "default" : "outline"}
-            className={`h-14 text-lg font-semibold ${
-              btn === "0" ? "col-span-1" : ""
-            } ${
-              ["÷", "×", "-", "+"].includes(btn) 
-                ? "bg-primary/20 hover:bg-primary/30 text-primary" 
-                : btn === "=" 
-                ? "bg-primary text-primary-foreground hover:bg-primary/90"
-                : ""
-            }`}
-            onClick={() => {
-              if (btn === "=") handleEquals();
-              else if (btn === ".") handleDecimal();
-              else if (["÷", "×", "-", "+"].includes(btn)) handleOperation(btn);
-              else handleNumber(btn);
-            }}
+            variant="outline"
+            className="h-16 text-xl font-semibold col-span-2 glass hover:bg-primary/10 border-primary/20"
+            onClick={() => handleNumber("0")}
           >
-            {btn}
+            0
           </Button>
-        ))}
+          <Button
+            variant="outline"
+            className="h-16 text-xl font-semibold glass hover:bg-primary/10 border-primary/20"
+            onClick={handleDecimal}
+          >
+            .
+          </Button>
+        </div>
+
+        {/* Operations */}
+        <div className="grid grid-cols-4 gap-2">
+          {["÷", "×", "-", "+"].map((op) => (
+            <Button
+              key={op}
+              variant="default"
+              className="h-14 text-xl font-semibold bg-primary/20 hover:bg-primary/30 text-primary border border-primary/40"
+              onClick={() => handleOperation(op)}
+            >
+              {op}
+            </Button>
+          ))}
+        </div>
+
+        {/* Equals Button */}
+        <Button
+          variant="default"
+          className="w-full h-14 text-xl font-semibold bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg"
+          onClick={handleEquals}
+        >
+          =
+        </Button>
       </div>
     </div>
   );
