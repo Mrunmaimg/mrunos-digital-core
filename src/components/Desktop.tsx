@@ -75,8 +75,8 @@ export const Desktop = () => {
         y: window.innerWidth > 768 ? 80 + openWindows.length * 30 : 60
       },
       size: { 
-        width: Math.min(700, window.innerWidth - 40), 
-        height: Math.min(500, window.innerHeight - 120) 
+        width: app.id === "calculator" ? Math.min(350, window.innerWidth - 40) : Math.min(700, window.innerWidth - 40), 
+        height: app.id === "calculator" ? Math.min(480, window.innerHeight - 120) : Math.min(500, window.innerHeight - 120) 
       },
       zIndex: maxZIndex + 1,
     };
@@ -110,7 +110,7 @@ export const Desktop = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5"></div>
 
       {/* Desktop Icons */}
-      <div className="relative z-0 p-4 md:p-8 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4 md:gap-6 content-start h-[calc(100vh-4rem)]">
+      <div className="relative z-0 p-4 md:p-8 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4 md:gap-6 content-start h-[calc(100vh-4rem)] overflow-auto">
         {apps.map((app) => (
           <AppIcon
             key={app.id}
