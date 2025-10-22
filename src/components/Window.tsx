@@ -152,7 +152,7 @@ export const Window = ({
         </div>
       </div>
 
-      <div className="h-[calc(100%-2.5rem)] overflow-auto p-4 md:p-6 bg-card/50 scrollbar-thin">
+      <div className="h-[calc(100%-2.5rem)] overflow-auto p-4 md:p-6 bg-card/50">
         {children}
       </div>
     </div>
