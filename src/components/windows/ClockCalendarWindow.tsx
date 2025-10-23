@@ -34,26 +34,33 @@ export const ClockCalendarWindow = () => {
   return (
     <div className="space-y-6">
       {/* Digital Clock */}
-      <div className="glass p-6 rounded-lg">
-        <div className="flex items-center gap-2 mb-4">
-          <Clock className="w-5 h-5 text-primary animate-pulse" />
-          <h3 className="text-lg font-semibold text-primary">System Time</h3>
-        </div>
-        <div className="text-center">
-          <div className="text-5xl md:text-6xl font-mono font-bold text-primary glow-cyan mb-2">
-            {formatTime(time)}
+      <div className="glass p-8 rounded-2xl border border-primary/20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 animate-pulse"></div>
+        <div className="relative z-10">
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <Clock className="w-6 h-6 text-primary animate-spin" style={{ animationDuration: '3s' }} />
+            <h3 className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              System Time
+            </h3>
           </div>
-          <div className="text-sm text-muted-foreground">
-            {formatDate(time)}
+          <div className="text-center space-y-4">
+            <div className="text-6xl md:text-7xl font-mono font-black bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent glow-cyan tracking-wider animate-pulse">
+              {formatTime(time)}
+            </div>
+            <div className="text-base text-muted-foreground font-medium tracking-wide">
+              {formatDate(time)}
+            </div>
           </div>
         </div>
       </div>
 
       {/* Calendar */}
-      <div className="glass p-6 rounded-lg">
-        <div className="flex items-center gap-2 mb-4">
-          <CalendarIcon className="w-5 h-5 text-secondary animate-pulse" />
-          <h3 className="text-lg font-semibold text-secondary">Calendar</h3>
+      <div className="glass p-6 rounded-2xl border border-secondary/20">
+        <div className="flex items-center justify-center gap-3 mb-4">
+          <CalendarIcon className="w-6 h-6 text-secondary animate-pulse" />
+          <h3 className="text-xl font-bold bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent">
+            Calendar
+          </h3>
         </div>
         <Calendar
           mode="single"
