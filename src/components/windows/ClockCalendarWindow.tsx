@@ -3,7 +3,8 @@ import { Calendar } from "@/components/ui/calendar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Calendar as CalendarIcon, Clock, AlarmClock, Timer, Watch } from "lucide-react";
+import { Calendar as CalendarIcon, Clock, AlarmClock, Timer, Watch, Globe } from "lucide-react";
+import { toast } from "@/hooks/use-toast";
 
 export const ClockCalendarWindow = () => {
   const [time, setTime] = useState(new Date());
@@ -16,12 +17,44 @@ export const ClockCalendarWindow = () => {
   const [alarmTime, setAlarmTime] = useState("08:00");
   const [alarmSet, setAlarmSet] = useState(false);
 
+  // Sound function
+  const playAlertSound = () => {
+    const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+    const oscillator = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+    
+    oscillator.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+    
+    oscillator.frequency.value = 800;
+    oscillator.type = 'sine';
+    
+    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1);
+    
+    oscillator.start(audioContext.currentTime);
+    oscillator.stop(audioContext.currentTime + 1);
+  };
+
   useEffect(() => {
     const timer = setInterval(() => {
       setTime(new Date());
+      
+      // Check alarm
+      if (alarmSet) {
+        const currentTime = new Date().toTimeString().slice(0, 5);
+        if (currentTime === alarmTime) {
+          playAlertSound();
+          toast({
+            title: "⏰ Alarm!",
+            description: `It's ${alarmTime}`,
+          });
+          setAlarmSet(false);
+        }
+      }
     }, 1000);
     return () => clearInterval(timer);
-  }, []);
+  }, [alarmSet, alarmTime]);
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -40,6 +73,11 @@ export const ClockCalendarWindow = () => {
         setTimerTime(prev => {
           if (prev <= 1000) {
             setTimerRunning(false);
+            playAlertSound();
+            toast({
+              title: "⏱️ Timer Complete!",
+              description: "Your timer has finished",
+            });
             return 0;
           }
           return prev - 1000;
@@ -278,6 +316,48 @@ export const ClockCalendarWindow = () => {
           onSelect={setDate}
           className="rounded-md border-0"
         />
+        
+        {/* World Clocks */}
+        <div className="mt-6 pt-6 border-t border-primary/10">
+          <div className="flex items-center gap-2 mb-4">
+            <Globe className="w-4 h-4 text-primary" />
+            <h4 className="font-semibold text-sm text-primary">World Time</h4>
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            {[
+              { city: "New York", tz: "America/New_York" },
+              { city: "London", tz: "Europe/London" },
+              { city: "Tokyo", tz: "Asia/Tokyo" },
+              { city: "Sydney", tz: "Australia/Sydney" },
+            ].map((loc) => {
+              const worldTime = new Date().toLocaleTimeString('en-US', {
+                timeZone: loc.tz,
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false
+              });
+              return (
+                <div key={loc.city} className="glass px-3 py-2 rounded-lg border border-primary/10">
+                  <div className="text-xs text-muted-foreground">{loc.city}</div>
+                  <div className="font-mono text-sm font-bold text-primary">{worldTime}</div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        
+        {/* Selected Date Info */}
+        {date && (
+          <div className="mt-4 p-3 glass rounded-lg border border-secondary/10">
+            <div className="text-xs text-muted-foreground mb-1">Selected Date</div>
+            <div className="text-sm font-semibold text-secondary">
+              {date.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}
+            </div>
+            <div className="text-xs text-muted-foreground mt-2">
+              Day {Math.ceil((date.getTime() - new Date(date.getFullYear(), 0, 0).getTime()) / (1000 * 60 * 60 * 24))} of {date.getFullYear()}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
