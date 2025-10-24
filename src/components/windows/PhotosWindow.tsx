@@ -102,12 +102,15 @@ export const PhotosWindow = () => {
                 className="aspect-square rounded-lg border border-primary/20 hover:border-primary/40 transition-all group relative overflow-hidden"
               >
                 <img src={photo.data} alt="Captured" className="w-full h-full object-cover" />
-                <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity z-10">
                   <Button 
                     size="icon" 
                     variant={photo.isFavorite ? "default" : "ghost"} 
                     className="h-8 w-8" 
-                    onClick={() => toggleFavorite(photo.id)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleFavorite(photo.id);
+                    }}
                   >
                     <Heart className="w-4 h-4" fill={photo.isFavorite ? "currentColor" : "none"} />
                   </Button>

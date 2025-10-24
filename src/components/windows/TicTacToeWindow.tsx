@@ -57,31 +57,31 @@ export const TicTacToeWindow = () => {
     : `Next Player: ${isXNext ? "X" : "O"}`;
 
   return (
-    <div className="p-6 space-y-6">
-      <div className="glass p-4 rounded-lg border border-primary/30 text-center">
-        <h3 className="text-xl font-bold text-primary mb-2">{status}</h3>
-        <div className="flex justify-center gap-6 text-sm">
+    <div className="h-full flex flex-col p-3 space-y-3">
+      <div className="glass p-3 rounded-lg border border-primary/30 text-center">
+        <h3 className="text-sm font-bold text-primary mb-2">{status}</h3>
+        <div className="flex justify-center gap-4 text-xs">
           <div className="text-center">
-            <div className="text-muted-foreground">X Wins</div>
-            <div className="text-2xl font-bold text-primary">{score.X}</div>
+            <div className="text-muted-foreground">X</div>
+            <div className="text-lg font-bold text-primary">{score.X}</div>
           </div>
           <div className="text-center">
             <div className="text-muted-foreground">Draws</div>
-            <div className="text-2xl font-bold text-muted-foreground">{score.draws}</div>
+            <div className="text-lg font-bold text-muted-foreground">{score.draws}</div>
           </div>
           <div className="text-center">
-            <div className="text-muted-foreground">O Wins</div>
-            <div className="text-2xl font-bold text-secondary">{score.O}</div>
+            <div className="text-muted-foreground">O</div>
+            <div className="text-lg font-bold text-secondary">{score.O}</div>
           </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-2 max-w-[300px] mx-auto">
+      <div className="grid grid-cols-3 gap-2 max-w-[240px] mx-auto flex-1">
         {board.map((cell, index) => (
           <Button
             key={index}
             variant="outline"
-            className={`h-24 text-4xl font-bold hover:bg-primary/20 ${
+            className={`h-16 text-3xl font-bold hover:bg-primary/20 ${
               cell === "X" ? "text-primary" : cell === "O" ? "text-secondary" : ""
             }`}
             onClick={() => handleClick(index)}
@@ -94,10 +94,10 @@ export const TicTacToeWindow = () => {
 
       <Button
         variant="outline"
-        className="w-full"
+        className="w-full h-8 text-xs"
         onClick={resetGame}
       >
-        <RotateCcw className="w-4 h-4 mr-2" />
+        <RotateCcw className="w-3 h-3 mr-2" />
         New Game
       </Button>
     </div>

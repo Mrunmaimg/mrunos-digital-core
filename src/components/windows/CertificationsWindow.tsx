@@ -34,9 +34,22 @@ export const CertificationsWindow = () => {
       <div>
         <h2 className="text-2xl font-bold text-primary mb-2 flex items-center gap-2">
           <Award className="w-6 h-6" />
-          Professional Certifications
+          Education & Certifications
         </h2>
-        <p className="text-sm text-muted-foreground">Industry-recognized credentials and specialized training</p>
+        <p className="text-sm text-muted-foreground">Academic achievements and professional credentials</p>
+      </div>
+
+      {/* Education Section */}
+      <div className="glass p-6 rounded-lg border border-primary/30">
+        <h3 className="text-lg font-semibold text-primary mb-4">🎓 Education</h3>
+        <div className="space-y-4">
+          <div>
+            <h4 className="font-semibold text-foreground">Secondary School Certificate (10th Standard)</h4>
+            <p className="text-sm text-muted-foreground">CBSE Board</p>
+            <p className="text-sm text-secondary mt-1">Percentage: 95.2%</p>
+            <p className="text-xs text-muted-foreground mt-1">Completed in 2021</p>
+          </div>
+        </div>
       </div>
 
       <div className="space-y-4">

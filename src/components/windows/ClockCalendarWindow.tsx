@@ -289,13 +289,17 @@ export const ClockCalendarWindow = () => {
                 >
                   {timerRunning ? 'Pause' : 'Start'}
                 </Button>
-                <Button
-                  onClick={() => { setTimerTime(0); setTimerRunning(false); }}
-                  variant="outline"
-                  className="flex-1"
-                >
-                  Reset
-                </Button>
+              <Button
+                onClick={() => { 
+                  setTimerTime(0); 
+                  setTimerRunning(false); 
+                  setTimerInput("00:00");
+                }}
+                variant="outline"
+                className="flex-1"
+              >
+                Reset
+              </Button>
               </div>
             </div>
           </div>
@@ -355,6 +359,16 @@ export const ClockCalendarWindow = () => {
             </div>
             <div className="text-xs text-muted-foreground mt-2">
               Day {Math.ceil((date.getTime() - new Date(date.getFullYear(), 0, 0).getTime()) / (1000 * 60 * 60 * 24))} of {date.getFullYear()}
+            </div>
+            
+            {/* Festivals & Events */}
+            <div className="mt-3 pt-3 border-t border-primary/10">
+              <div className="text-xs font-semibold text-primary mb-2">🎉 Upcoming Events</div>
+              <div className="space-y-1">
+                <div className="text-xs text-muted-foreground">• New Year - Jan 1</div>
+                <div className="text-xs text-muted-foreground">• Diwali - Nov 1</div>
+                <div className="text-xs text-muted-foreground">• Christmas - Dec 25</div>
+              </div>
             </div>
           </div>
         )}

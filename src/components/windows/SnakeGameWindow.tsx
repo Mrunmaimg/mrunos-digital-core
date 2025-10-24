@@ -5,8 +5,8 @@ import { Button } from "@/components/ui/button";
 type Direction = "UP" | "DOWN" | "LEFT" | "RIGHT";
 type Position = { x: number; y: number };
 
-const GRID_SIZE = 20;
-const CELL_SIZE = 20;
+const GRID_SIZE = 15;
+const CELL_SIZE = 18;
 const INITIAL_SNAKE: Position[] = [{ x: 10, y: 10 }];
 const INITIAL_DIRECTION: Direction = "RIGHT";
 const GAME_SPEED = 150;
@@ -125,24 +125,24 @@ export const SnakeGameWindow = () => {
   }, [moveSnake]);
 
   return (
-    <div className="space-y-4">
-      <div className="glass p-4 rounded-lg">
-        <div className="flex items-center justify-between mb-4">
+    <div className="h-full flex flex-col p-2">
+      <div className="glass p-3 rounded-lg flex-1 flex flex-col">
+        <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-2">
-            <Gamepad2 className="w-5 h-5 text-primary animate-pulse" />
-            <h3 className="text-lg font-semibold text-primary">Snake Game</h3>
+            <Gamepad2 className="w-4 h-4 text-primary animate-pulse" />
+            <h3 className="text-sm font-semibold text-primary">Snake Game</h3>
           </div>
-          <div className="flex items-center gap-4">
-            <div className="text-sm font-mono">
+          <div className="flex items-center gap-3">
+            <div className="text-xs font-mono">
               Score: <span className="text-primary font-bold">{score}</span>
             </div>
             <Button 
               onClick={resetGame}
               size="sm"
               variant="outline"
-              className="gap-2"
+              className="gap-1 h-7 text-xs"
             >
-              <RotateCcw className="w-4 h-4" />
+              <RotateCcw className="w-3 h-3" />
               Reset
             </Button>
           </div>
@@ -205,7 +205,7 @@ export const SnakeGameWindow = () => {
           )}
         </div>
 
-        <div className="text-xs text-muted-foreground text-center mt-4">
+        <div className="text-[10px] text-muted-foreground text-center mt-2">
           Use arrow keys to play • Space to pause
         </div>
       </div>
