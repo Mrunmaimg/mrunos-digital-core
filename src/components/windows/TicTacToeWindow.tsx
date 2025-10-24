@@ -76,12 +76,12 @@ export const TicTacToeWindow = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-2 max-w-[240px] w-full mx-auto">
+      <div className="grid grid-cols-3 gap-2 w-[240px] mx-auto">
         {board.map((cell, index) => (
           <Button
             key={index}
             variant="outline"
-            className={`aspect-square w-full text-3xl font-bold hover:bg-primary/20 ${
+            className={`w-[76px] h-[76px] text-3xl font-bold hover:bg-primary/20 ${
               cell === "X" ? "text-primary" : cell === "O" ? "text-secondary" : ""
             }`}
             onClick={() => handleClick(index)}
